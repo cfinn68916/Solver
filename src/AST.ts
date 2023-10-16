@@ -90,19 +90,19 @@ class AddAST implements AST {
 
 class PowAST implements AST {
     lhs: AST;
-    pow: number;
+    rhs: AST;
 
-    constructor(a, pow) {
+    constructor(a, b) {
         this.lhs = a;
-        this.pow = pow;
+        this.rhs = b;
     }
 
     getVal(x) {
-        return Math.pow(this.lhs.getVal(x), this.pow);
+        return Math.pow(this.lhs.getVal(x), this.rhs.getVal(x));
     }
 
     getDerVal(x) {
-        return this.lhs.getDerVal(x) * this.pow * Math.pow(this.lhs.getVal(x), this.pow - 1);
+        return Math.pow(this.lhs.getVal(x), this.rhs.getVal(x))*(this.rhs.getDerVal(x)*Math.log(this.lhs.getVal(x))+(this.lhs.getDerVal(x)*this.rhs.getDerVal(x)/this.lhs.getVal(x)));
     }
 }
 

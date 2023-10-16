@@ -155,7 +155,7 @@ function handleParen(tokenizer) {
             curAST = new DivAST(curAST, handlePrimary(tokenizer));
         } else if (tokenizer.getTok().type == 8) {
             tokenizer.eatTok();
-            curAST = new PowAST(curAST, parseFloat(tokenizer.eatTok().val));
+            curAST = new PowAST(curAST, handlePrimary(tokenizer));
         }
     }
     tokenizer.eatTok();
@@ -186,7 +186,7 @@ function handleTop(tokenizer) {
             curAST = new DivAST(curAST, handlePrimary(tokenizer));
         } else if (tokenizer.getTok().type == 8) {
             tokenizer.eatTok();
-            curAST = new PowAST(curAST, parseFloat(tokenizer.eatTok().val));
+            curAST = new PowAST(curAST, handlePrimary(tokenizer));
         }
     }
     return curAST;
