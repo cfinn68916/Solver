@@ -100,93 +100,93 @@ class Tokenizer {
     }
 }
 
-function handleExpr(tokz) {
-    if (tokz.getTok().val == 'x') {
-        tokz.eatTok();
+function handleExpr(tokenizer) {
+    if (tokenizer.getTok().val == 'x') {
+        tokenizer.eatTok();
         return new XAST();
-    } else if (tokz.getTok().val == 'sin') {
-        tokz.eatTok();
-        return new SinAST(handleParen(tokz));
-    } else if (tokz.getTok().val == 'cos') {
-        tokz.eatTok();
-        return new CosAST(handleParen(tokz));
-    } else if (tokz.getTok().val == 'tan') {
-        tokz.eatTok();
-        return new TanAST(handleParen(tokz));
+    } else if (tokenizer.getTok().val == 'sin') {
+        tokenizer.eatTok();
+        return new SinAST(handleParen(tokenizer));
+    } else if (tokenizer.getTok().val == 'cos') {
+        tokenizer.eatTok();
+        return new CosAST(handleParen(tokenizer));
+    } else if (tokenizer.getTok().val == 'tan') {
+        tokenizer.eatTok();
+        return new TanAST(handleParen(tokenizer));
     }
 }
 
-function handlePrimary(tokz) {
-    if (tokz.getTok().type == 0) {
-        return handleNum(tokz);
-    } else if (tokz.getTok().type == 2) {
-        return handleParen(tokz);
-    } else if (tokz.getTok().type == 1) {
-        return handleExpr(tokz);
+function handlePrimary(tokenizer) {
+    if (tokenizer.getTok().type == 0) {
+        return handleNum(tokenizer);
+    } else if (tokenizer.getTok().type == 2) {
+        return handleParen(tokenizer);
+    } else if (tokenizer.getTok().type == 1) {
+        return handleExpr(tokenizer);
     }
 }
 
-function handleNum(tokz) {
-    return new NumberAST(parseFloat(tokz.eatTok().val));
+function handleNum(tokenizer) {
+    return new NumberAST(parseFloat(tokenizer.eatTok().val));
 }
 
-function handleParen(tokz) {
+function handleParen(tokenizer) {
     let curAST;
     let prevPrec = 0;
-    tokz.eatTok();
-    while (tokz.getTok().type != 3) {
-        if (tokz.getTok().type == 0) {
-            curAST = handleNum(tokz);
-        } else if (tokz.getTok().type == 1) {
-            curAST = handleExpr(tokz);
-        } else if (tokz.getTok().type == 2) {
-            curAST = handleParen(tokz);
-        } else if (tokz.getTok().type == 4) {
-            tokz.eatTok();
-            curAST = new AddAST(curAST, handlePrimary(tokz));
-        } else if (tokz.getTok().type == 5) {
-            tokz.eatTok();
-            curAST = new SubtractAST(curAST, handlePrimary(tokz));
-        } else if (tokz.getTok().type == 6) {
-            tokz.eatTok();
-            curAST = new MultiplyAST(curAST, handlePrimary(tokz));
-        } else if (tokz.getTok().type == 7) {
-            tokz.eatTok();
-            curAST = new DivAST(curAST, handlePrimary(tokz));
-        } else if (tokz.getTok().type == 8) {
-            tokz.eatTok();
-            curAST = new PowAST(curAST, parseFloat(tokz.eatTok().val));
+    tokenizer.eatTok();
+    while (tokenizer.getTok().type != 3) {
+        if (tokenizer.getTok().type == 0) {
+            curAST = handleNum(tokenizer);
+        } else if (tokenizer.getTok().type == 1) {
+            curAST = handleExpr(tokenizer);
+        } else if (tokenizer.getTok().type == 2) {
+            curAST = handleParen(tokenizer);
+        } else if (tokenizer.getTok().type == 4) {
+            tokenizer.eatTok();
+            curAST = new AddAST(curAST, handlePrimary(tokenizer));
+        } else if (tokenizer.getTok().type == 5) {
+            tokenizer.eatTok();
+            curAST = new SubtractAST(curAST, handlePrimary(tokenizer));
+        } else if (tokenizer.getTok().type == 6) {
+            tokenizer.eatTok();
+            curAST = new MultiplyAST(curAST, handlePrimary(tokenizer));
+        } else if (tokenizer.getTok().type == 7) {
+            tokenizer.eatTok();
+            curAST = new DivAST(curAST, handlePrimary(tokenizer));
+        } else if (tokenizer.getTok().type == 8) {
+            tokenizer.eatTok();
+            curAST = new PowAST(curAST, parseFloat(tokenizer.eatTok().val));
         }
     }
-    tokz.eatTok();
+    tokenizer.eatTok();
     return curAST;
 }
 
 
-function handleTop(tokz) {
+function handleTop(tokenizer) {
     let curAST;
-    while (tokz.getTok().type != -1) {
-        if (tokz.getTok().type == 0) {
-            curAST = handleNum(tokz);
-        } else if (tokz.getTok().type == 1) {
-            curAST = handleExpr(tokz);
-        } else if (tokz.getTok().type == 2) {
-            curAST = handleParen(tokz);
-        } else if (tokz.getTok().type == 4) {
-            tokz.eatTok();
-            curAST = new AddAST(curAST, handlePrimary(tokz));
-        } else if (tokz.getTok().type == 5) {
-            tokz.eatTok();
-            curAST = new SubtractAST(curAST, handlePrimary(tokz));
-        } else if (tokz.getTok().type == 6) {
-            tokz.eatTok();
-            curAST = new MultiplyAST(curAST, handlePrimary(tokz));
-        } else if (tokz.getTok().type == 7) {
-            tokz.eatTok();
-            curAST = new DivAST(curAST, handlePrimary(tokz));
-        } else if (tokz.getTok().type == 8) {
-            tokz.eatTok();
-            curAST = new PowAST(curAST, parseFloat(tokz.eatTok().val));
+    while (tokenizer.getTok().type != -1) {
+        if (tokenizer.getTok().type == 0) {
+            curAST = handleNum(tokenizer);
+        } else if (tokenizer.getTok().type == 1) {
+            curAST = handleExpr(tokenizer);
+        } else if (tokenizer.getTok().type == 2) {
+            curAST = handleParen(tokenizer);
+        } else if (tokenizer.getTok().type == 4) {
+            tokenizer.eatTok();
+            curAST = new AddAST(curAST, handlePrimary(tokenizer));
+        } else if (tokenizer.getTok().type == 5) {
+            tokenizer.eatTok();
+            curAST = new SubtractAST(curAST, handlePrimary(tokenizer));
+        } else if (tokenizer.getTok().type == 6) {
+            tokenizer.eatTok();
+            curAST = new MultiplyAST(curAST, handlePrimary(tokenizer));
+        } else if (tokenizer.getTok().type == 7) {
+            tokenizer.eatTok();
+            curAST = new DivAST(curAST, handlePrimary(tokenizer));
+        } else if (tokenizer.getTok().type == 8) {
+            tokenizer.eatTok();
+            curAST = new PowAST(curAST, parseFloat(tokenizer.eatTok().val));
         }
     }
     return curAST;
