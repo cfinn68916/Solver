@@ -5,7 +5,8 @@ interface AST {
 }
 
 class NumberAST implements AST {
-    val:number;
+    val: number;
+
     constructor(val) {
         this.val = val;
     }
@@ -34,8 +35,9 @@ class XAST implements AST {
 }
 
 class MultiplyAST implements AST {
-    lhs:AST;
-    rhs:AST;
+    lhs: AST;
+    rhs: AST;
+
     constructor(a, b) {
         this.lhs = a;
         this.rhs = b;
@@ -51,8 +53,9 @@ class MultiplyAST implements AST {
 }
 
 class SubtractAST implements AST {
-    lhs:AST;
-    rhs:AST;
+    lhs: AST;
+    rhs: AST;
+
     constructor(a, b) {
         this.lhs = a;
         this.rhs = b;
@@ -68,8 +71,9 @@ class SubtractAST implements AST {
 }
 
 class AddAST implements AST {
-    lhs:AST;
-    rhs:AST;
+    lhs: AST;
+    rhs: AST;
+
     constructor(a, b) {
         this.lhs = a;
         this.rhs = b;
@@ -85,8 +89,9 @@ class AddAST implements AST {
 }
 
 class PowAST implements AST {
-    lhs:AST;
-    pow:number;
+    lhs: AST;
+    pow: number;
+
     constructor(a, pow) {
         this.lhs = a;
         this.pow = pow;
@@ -102,8 +107,9 @@ class PowAST implements AST {
 }
 
 class DivAST implements AST {
-    lhs:AST;
-    rhs:AST;
+    lhs: AST;
+    rhs: AST;
+
     constructor(a, b) {
         this.lhs = a;
         this.rhs = b;
@@ -119,7 +125,8 @@ class DivAST implements AST {
 }
 
 class SinAST implements AST {
-    val:AST;
+    val: AST;
+
     constructor(a) {
         this.val = a;
     }
@@ -134,7 +141,8 @@ class SinAST implements AST {
 }
 
 class CosAST implements AST {
-    val:AST;
+    val: AST;
+
     constructor(a) {
         this.val = a;
     }
@@ -149,7 +157,8 @@ class CosAST implements AST {
 }
 
 class TanAST implements AST {
-    val:AST;
+    val: AST;
+
     constructor(a) {
         this.val = a;
     }

@@ -4,12 +4,12 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+        <link rel="stylesheet" href="css/css.css">
     </head>
     <body>
         <input type="text" id="lside">=
         <input type="text" id="rside">
-        <button onclick="document.querySelector('#solutions').innerHTML='';solve();">Solve</button>
+        <button onclick="$('#solutions').html('');solve();">Solve</button>
         <p id="solutions"></p>
         <script src="src/AST.js"></script>
         <script src="src/Tokenize.js"></script>
