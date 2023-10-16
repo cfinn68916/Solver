@@ -12,6 +12,8 @@ class Token{
             8:pow
 
     */
+    type:number;
+    val:null|string;
     constructor(type, val=null){
         this.type=type;
         this.val=val;
@@ -86,6 +88,8 @@ function tokenize(inp){
 
 
 class Tokenizer{
+    toks:Token[];
+    iter:number;
     constructor(inp){
         this.toks=tokenize(inp);
         this.iter=0;
