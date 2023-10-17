@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>Solver</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link rel="stylesheet" href="css/css.css">
     </head>
@@ -11,18 +11,19 @@
         <input type="text" id="rside">
         <details>
             <summary>Advanced Options</summary>
-            <label for="guess_min">Minimum Guess</label><input type="number" id="guess_min" value="-100"><br>
-            <label for="guess_max">Maximum Guess Range</label><input type="number" id="guess_max" value="100"><br>
-            <label for="guess_step">Guess range step</label><input type="number" id="guess_step" value="0.1"><br>
-            <label for="group_deviation">Solution Grouping Threshold</label><input type="number" id="group_deviation" value="0.0001"><br>
-            <label for="max_iter">Maximum iterations</label><input type="number" id="max_iter" value="10000"><br>
-            <label for="stopping_error">Stopping Error</label><input type="number" id="stopping_error" value="0.00000001">
+            <label for="guess_min">Minimum Guess:</label><input type="text" id="guess_min" value="-100"><br>
+            <label for="guess_max">Maximum Guess Range:</label><input type="text" id="guess_max" value="100"><br>
+            <label for="guess_step">Guess range step:</label><input type="text" id="guess_step" value="0.1"><br>
+            <label for="group_deviation">Solution Grouping Threshold:</label><input type="text" id="group_deviation" value="0.0001"><br>
+            <label for="max_iter">Maximum iterations:</label><input type="text" id="max_iter" value="10000"><br>
+            <label for="stopping_error">Stopping Error:</label><input type="text" id="stopping_error" value="0.00000001">
         </details>
         <button onclick="$('#solutions').html('');solve();">Solve</button>
+        <h1>Solutions:</h1>
         <div id="solutions">
             Solve not attempted yet
         </div>
-        <div>
+        <div><br>
             <button onclick="toggleDarkMode()">Toggle Dark Mode</button><br>
             <a href="https://github.com/cfinn68916/Solver">Source Code</a>
         </div>
