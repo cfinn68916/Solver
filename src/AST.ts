@@ -102,7 +102,7 @@ class PowAST implements AST {
     }
 
     getDerVal(x) {
-        return Math.pow(this.lhs.getVal(x), this.rhs.getVal(x))*(this.rhs.getDerVal(x)*Math.log(this.lhs.getVal(x))+(this.lhs.getDerVal(x)*this.rhs.getDerVal(x)/this.lhs.getVal(x)));
+        return Math.pow(this.lhs.getVal(x), this.rhs.getVal(x))*(this.rhs.getDerVal(x)*Math.log(this.lhs.getVal(x))+(this.lhs.getDerVal(x)*this.rhs.getVal(x)/this.lhs.getVal(x)));
     }
 }
 
