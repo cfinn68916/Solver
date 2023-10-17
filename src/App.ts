@@ -24,6 +24,16 @@ function solve() {
                 if(Math.abs(err.getVal(x)) < stop_err || isNaN(x)){
                     break;
                 }
+                let alreadyin = false;
+                for (let sol of solutions) {
+                    if (Math.abs(sol - x) < group_dev) {
+                        alreadyin = true;
+                        break;
+                    }
+                }
+                if (alreadyin){
+                    break;
+                }
             }
             if(Math.abs(err.getVal(x)) > stop_err || isNaN(x)){
                 continue;
