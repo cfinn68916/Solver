@@ -13,6 +13,7 @@ function solve() {
     let stop_err=parseFloat($('#stopping_error').val().toString());
     let group_dev=parseFloat($('#group_deviation').val().toString());
     let max_iter=parseFloat($('#max_iter').val().toString());
+    let second_pass_iter=parseFloat($('#2nd_pass_iter').val().toString());
 
 
     let solutions: number[] = [];
@@ -59,13 +60,35 @@ function solve() {
         }
 
     }
-    solutions.sort(function (a, b) {
+    for (let solI = 0; solI < solutions.length; solI++) {
+        for (let i = 0; i < second_pass_iter; i++) {
+            solutions[solI] = solutions[solI] - (err.getVal(solutions[solI]) / err.getDerVal(solutions[solI]));
+        }
+    }
+    let newSol:number[]=[];
+    for (const sol of solutions) {
+        if (newSol.length == 0) {
+                newSol.push(sol);
+            } else {
+                let alreadyin = false;
+                for (let sol2 of newSol) {
+                    if (Math.abs(sol - sol2) < group_dev) {
+                        alreadyin = true;
+                        break;
+                    }
+                }
+                if (!alreadyin) {
+                    newSol.push(sol);
+                }
+            }
+    }
+    newSol.sort(function (a, b) {
         return a - b
     });
-    for (let sol of solutions) {
+    for (let sol of newSol) {
         $('#solutions').append(`
         <details>
-            <summary>${Math.round(sol*1000000)/1000000}</summary>
+            <summary>${Math.round(sol*100000)/100000}</summary>
             <p>${sol}<br>
             Error: ${err.getVal(sol)}<br>
             LHS: ${lside.getVal(sol)}<br>
