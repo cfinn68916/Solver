@@ -172,14 +172,26 @@ class TanAST implements AST {
     }
 }
 
-function getSinDeg(angAST) {
-    return new SinAST(new MultiplyAST(angAST, new NumberAST(Math.PI / 180.0)));
+function getSin(angAST) {
+    if (window.localStorage.getItem('angType') === 'radians') {
+        return new SinAST(angAST);
+    } else {
+        return new SinAST(new MultiplyAST(angAST, new NumberAST(Math.PI / 180.0)));
+    }
 }
 
-function getCosDeg(angAST) {
-    return new CosAST(new MultiplyAST(angAST, new NumberAST(Math.PI / 180.0)));
+function getCos(angAST) {
+    if (window.localStorage.getItem('angType') === 'radians') {
+        return new CosAST(angAST);
+    } else {
+        return new CosAST(new MultiplyAST(angAST, new NumberAST(Math.PI / 180.0)));
+    }
 }
 
-function getTanDeg(angAST) {
-    return new TanAST(new MultiplyAST(angAST, new NumberAST(Math.PI / 180.0)));
+function getTan(angAST) {
+    if (window.localStorage.getItem('angType') === 'radians') {
+        return new TanAST(angAST);
+    } else {
+        return new TanAST(new MultiplyAST(angAST, new NumberAST(Math.PI / 180.0)));
+    }
 }

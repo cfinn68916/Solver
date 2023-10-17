@@ -86,3 +86,13 @@ function toggleDarkMode(){
     $('*').toggleClass('dark-mode');
     window.localStorage.setItem('mode', $('body').hasClass('dark-mode')?'dark':'light');
 }
+
+function toggleAngType(){
+    if(window.localStorage.getItem('angType')==='radians'){
+        window.localStorage.setItem('angType','degrees');
+        $('#ang_type').text('Switch to Radians');
+    }else{
+        window.localStorage.setItem('angType','radians');
+        $('#ang_type').text('Switch to Degrees');
+    }
+}

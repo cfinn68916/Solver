@@ -106,13 +106,13 @@ function handleExpr(tokenizer) {
         return new XAST();
     } else if (tokenizer.getTok().val == 'sin') {
         tokenizer.eatTok();
-        return new SinAST(handleParen(tokenizer));
+        return getSin(handleParen(tokenizer));
     } else if (tokenizer.getTok().val == 'cos') {
         tokenizer.eatTok();
-        return new CosAST(handleParen(tokenizer));
+        return getCos(handleParen(tokenizer));
     } else if (tokenizer.getTok().val == 'tan') {
         tokenizer.eatTok();
-        return new TanAST(handleParen(tokenizer));
+        return getTan(handleParen(tokenizer));
     }
 }
 
