@@ -18,8 +18,8 @@
             <label for="max_iter">Maximum iterations</label><input type="number" id="max_iter" value="10000"><br>
             <label for="stopping_error">Stopping Error</label><input type="number" id="stopping_error" value="0.00000001">
         </details>
-        <button onclick="solve();">Solve</button>
-        <p id="solutions"></p>
+        <button onclick="$('#solutions').html('');solve();">Solve</button>
+        <div id="solutions"></div>
         <script src="src/AST.js"></script>
         <script src="src/Tokenize.js"></script>
         <script src="src/App.js"></script>

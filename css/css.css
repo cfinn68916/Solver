@@ -1,3 +1,7 @@
 #solutions {
     border: solid;
 }
+
+#solutions > details > p {
+    margin-left: 5%;
+}

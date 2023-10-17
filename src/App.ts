@@ -63,7 +63,16 @@ function solve() {
         return a - b
     });
     for (let sol of solutions) {
-        document.querySelector('#solutions').innerHTML += sol + '<br>';
+        $('#solutions').append(`
+        <details>
+            <summary>${Math.round(sol*1000000)/1000000}</summary>
+            <p>${sol}<br>
+            Error: ${err.getVal(sol)}<br>
+            LHS: ${lside.getVal(sol)}<br>
+            RHS: ${rside.getVal(sol)}<br></p>
+        </details>
+        `);
+
     }
 }
 
