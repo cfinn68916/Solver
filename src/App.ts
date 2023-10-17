@@ -76,4 +76,13 @@ function solve() {
     }
 }
 
+$(function (){
+    if(window.localStorage.getItem('mode')==='dark'){
+        $('*').addClass('dark-mode');
+    }
+});
 
+function toggleDarkMode(){
+    $('*').toggleClass('dark-mode');
+    window.localStorage.setItem('mode', $('body').hasClass('dark-mode')?'dark':'light');
+}

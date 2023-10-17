@@ -5,3 +5,13 @@
 #solutions > details > p {
     margin-left: 5%;
 }
+
+body{
+    background-color: white;
+    color: black;
+}
+
+.dark-mode {
+  background-color: #303545;
+  color: white;
+}
